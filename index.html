@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="js/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/odometer.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="js/materialize.min.js"></script>
+	<script src="js/justgage-1.1.0.min.js"></script>
+	<script src="js/raphael-2.1.4.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="http://github.hubspot.com/odometer/themes/odometer-theme-car.css">
+	<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	
+</head>
+<body ng-app="inplant">
+	<div ng-controller="dashboard" class="container">
+		<div class="row">
+			<div class="col s2">
+				&nbsp
+			</div>
+			<div class="col s5">
+				<div id="gaugeKargo" class="col s5"></div>
+				<div class="col s7">
+					<div class="row teal accent-2">
+						<div class="odometer"></div>
+						<img src="img/mobil.png" style="height:50px; width:auto;">
+					</div>
+					<div class="row teal accent-2">
+						<div class="odometer"></div>
+						<img src="img/flatbed.svg" style="height:50px; width:auto;">
+					</div>
+				</div>
+			</div>
+			<div class="col s2">
+				&nbsp
+			</div>
+			<div class="col s3 teal accent-2">
+				<div class="row teal accent-2">
+					<div class="odometer"></div>
+				</div>
+				<div class="row teal accent-2">
+					
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div ng-repeat="onePabrik in pabrikSemen">
+				
+
+				<div class="col s3 teal accent-1" style="border-width: 3px; border-color:white;">
+					<div id="gaugeSemen_{{onePabrik.no}}" ></div>
+					<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2" id="pack_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block; ">123</div><br><br>
+					<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" id="pack_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>
+					
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div ng-repeat="onePabrik in pabrikSilo">
+				
+
+				<div class="col s3 teal accent-1" >
+					<div id="gaugeSilo_{{onePabrik.no}}" ></div>
+					<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2" id="silo_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>
+					<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" id="silo_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>
+					
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s3">
+				<div class="row teal accent-2">
+					<div class="odometer"></div>
+					<img src="img/mobil.png" style="height:50px; width:auto;">
+				</div>
+				<div class="row teal accent-2">
+					<div class="odometer"></div>
+					<img src="img/flatbed.svg" style="height:50px; width:auto;">
+				</div>
+			</div>
+			<div class="col s3" id="gaugeCycle"></div>
+			<div class="col s3"></div>
+		</div>
+	<button ng-click="start()">click me!</button>
+	</div>
+
+</body>
+</html>
