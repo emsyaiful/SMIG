@@ -7,6 +7,7 @@
 	<script src="js/odometer.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/materialize.min.js"></script>
+	<script src="js/jquery.balloon.min.js"></script>
 	<script src="js/justgage-1.1.0.min.js"></script>
 	<script src="js/raphael-2.1.4.min.js"></script>
 
@@ -22,18 +23,16 @@
 
 			<div class="col s6 offset-s1">
 				<div class="row green hoverable" style="padding: 1em;">
-					<div class="col s6">
-						<div id="gaugeKargo" ></div>
-					</div>
+					
 					<div class="col s6">
 						<div class="row green darken-1" style="margin-bottom: 0.1em; ">
 							<div class="col s12">
 								<div class="row" style="padding: 0.5em;">
 									<div class="col s6">
-										<img src="img/mobil.png" style="height:50px; width:auto;">
+										<img id="mobil" src="img/mobil.png" style="height:50px; width:auto;">
 									</div>
 									<div class="col s6">
-										<div class="odometer"></div>
+										<div class="odometer" id="countcargobulk"></div>
 									</div>
 								</div>
 							</div>	
@@ -41,15 +40,21 @@
 						<div class="row green darken-1" style="margin-bottom: 0em;">
 							<div class="col s12">
 								<div class="row" style="padding: 0.5em;">
-									<div class="col s6">
-										<img src="img/flatbed.svg" style="height:50px; width:auto;">
+									<div class="col s4">
+										<img src="img/mobil.png" style="height:50px; width:auto;">
 									</div>
-									<div class="col s6">
-										<div class="odometer"></div>
+									<div class="col s4">
+										<div class="odometer" id="countcargobag"></div>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="col s6">
+						<div id="gaugeKargoBulk" ></div>
+					</div>
+					<div class="col s6">
+						<div id="gaugeKargoBag" ></div>
 					</div>
 				</div>
 			</div>
