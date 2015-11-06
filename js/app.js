@@ -53,6 +53,38 @@ app.controller('dashboard', function($scope,$location,$http) {
 			title: "Time in cargo",
 			label: "minute"
 		})
+		var gaugeBag = new JustGage({
+			id: "gaugeTimbangBag",
+			value: 0,
+			min: 0,
+			max: 500,
+			title: "Time in cargo",
+			label: "minute"
+		})
+		var gaugeBulk = new JustGage({
+			id: "gaugeTimbangBulk",
+			value: 0,
+			min: 0,
+			max: 500,
+			title: "Time in cargo",
+			label: "minute"
+		})
+		var gaugeBag = new JustGage({
+			id: "gaugeCycleBag",
+			value: 0,
+			min: 0,
+			max: 500,
+			title: "Time in cargo",
+			label: "minute"
+		})
+		var gaugeBulk = new JustGage({
+			id: "gaugeCycleBulk",
+			value: 0,
+			min: 0,
+			max: 500,
+			title: "Time in cargo",
+			label: "minute"
+		})
 		bag.gauge=gaugeBag
 		bulk.gauge=gaugeBulk
 		$http.get("/dev/sd/stmj/scm/fetchdata.php?sel=avgcargo").success(function(response){
@@ -125,15 +157,15 @@ app.controller('dashboard', function($scope,$location,$http) {
 	}
 	
 	angular.element(document).ready(function () {
-	var shown = true;
-        $('#gaugeKargoBag').on("click",function(){
-		shown ? $(this).hideBalloon() : $(this).showBalloon();
-    		shown = !shown;
-	}).showBalloon({
-  		minLifetime: 0, showDuration: 0, hideDuration: 0,contents: '<a href="#">Any HTML!</a><br />'
-    		+'<input type="text" size="40" />'
-    		+'<input type="submit" value="Search" />'
-	});
+	// var shown = false;
+ //        $('#gaugeKargoBag').on("click",function(){
+	// 	shown ? $(this).hideBalloon() : $(this).showBalloon();
+ //    		shown = !shown;
+	// }).showBalloon({
+ //  		minLifetime: 0, showDuration: 0, hideDuration: 0,contents: '<a href="#">Any HTML!</a><br />'
+ //    		+'<input type="text" size="40" />'
+ //    		+'<input type="submit" value="Search" />'
+	// });
 
 	for(i=0;i<$scope.pabrikSemen.length;i++){
         	var g = new JustGage({
