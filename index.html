@@ -17,7 +17,7 @@
 	
 	
 </head>
-<body ng-app="inplant" class="grey lighten-4">
+<body ng-app="inplant" class="grey lighten-2">
 	<div ng-controller="dashboard" class="container" style="margin-top: 2em;">
 		<div class="row">
 
@@ -92,7 +92,7 @@
 		<div class="row">
 			<div ng-repeat="onePabrik in pabrikSemen">
 				<div class="col s3 transparent hoverable" style="padding: 0em .2em;">
-					<div class="green lighten-3 grey-text text-lighten-5">
+					<div class="white grey-text text-lighten-5">
 						<div style="width:100%;" class="center-align">
 							<div id="gaugeSemen_{{onePabrik.no}}" class="grey-text text-lighten-5"></div>
 						</div>
@@ -108,7 +108,7 @@
 		<div class="row">
 			<div ng-repeat="onePabrik in pabrikSilo">
 				<div class="col s3 transparent hoverable" style="padding: .2em .2em;">
-					<div class="green lighten-3 grey-text text-lighten-5">
+					<div class="white grey-text text-lighten-5">
 						<div style="width:100%;" class="center-align">
 							<div id="gaugeSilo_{{onePabrik.no}}" ></div>
 						</div>
@@ -121,11 +121,11 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col s6 green hoverable">
+			<div class="col s6 grey lighten-4 hoverable">
 				<div class="row" style="padding: 0.5em; margin-bottom: 0em;">
-					<div class="col s6">
+					<div class="col s12">
 						
-						<div class="row green darken-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.4em;">
+						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.4em;">
 							<div class="col s12">
 								<div class="row">
 									<div class="col s12">
@@ -140,7 +140,7 @@
 							</div>
 						</div>
 						
-						<div class="row green darken-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.5em;">
+						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.5em;">
 							<div class="col s12">
 								<div class="row">
 									<div class="col s12">
@@ -156,12 +156,30 @@
 						</div>
 
 					</div>
-					<div class="col s3" >
-						<div id="gaugeCycleBag" ></div>	
-					</div>
-					<div class="col s3" >
-						<div id="gaugeCycleBulk" ></div>	
-					</div>
+					<!-- <div class="col s6">
+						
+						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.4em;">
+							<div class="col s12">
+								<div class="row">
+									<div class="col s12">
+										<div id="gaugeCycleBag" ></div>	
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.5em;">
+							<div class="col s12">
+								<div class="row">
+									<div class="col s12">
+										<div id="gaugeCycleBulk" ></div>
+									</div>
+								</div>
+							</div>				
+						</div>
+
+					</div> -->
+
 				</div>
 			</div>
 		</div>
