@@ -13,7 +13,7 @@
 		$aarSql = $dbOra->build_results($sql);
 		echo json_encode($aarSql);
 	}else if($_GET['sel']=="avgtmbm"){
-		$sql = "SELECT ROUND((avg(AVERAGE),2) AVERAGE,tipe_truk FROM (SELECT ROUND((avg(TGL_MASUK - DATE_CVY)*24*60),2) AVERAGE,tipe_truk from ZREPORT_RPT_REAL where (SELECT TO_CHAR (SYSDATE, 'DD-MM-YYYY') \"NOW\" FROM DUAL) = TO_CHAR(TGL_SPJ, 'DD-MM-YYYY') AND COM=$defaultParam[0] AND PLANT=$defaultParam[1] GROUP BY TIPE_TRUK union SELECT ROUND((avg(TGL_MASUK - DATE_CVY)*24*60),2) AVERAGE,tipe_truk from ZREPORT_RPT_REAL_NON70 where (SELECT TO_CHAR (SYSDATE, 'DD-MM-YYYY') \"NOW\" FROM DUAL) = TO_CHAR(TGL_SPJ, 'DD-MM-YYYY') AND COM=$defaultParam[0] AND PLANT=$defaultParam[1] GROUP BY TIPE_TRUK) GROUP BY TIPE_TRUK";
+		$sql = "SELECT ROUND(avg(AVERAGE),2) AVERAGE,tipe_truk FROM (SELECT ROUND((avg(TGL_MASUK - DATE_CVY)*24*60),2) AVERAGE,tipe_truk from ZREPORT_RPT_REAL where (SELECT TO_CHAR (SYSDATE, 'DD-MM-YYYY') \"NOW\" FROM DUAL) = TO_CHAR(TGL_SPJ, 'DD-MM-YYYY') AND COM=$defaultParam[0] AND PLANT=$defaultParam[1] GROUP BY TIPE_TRUK union SELECT ROUND((avg(TGL_MASUK - DATE_CVY)*24*60),2) AVERAGE,tipe_truk from ZREPORT_RPT_REAL_NON70 where (SELECT TO_CHAR (SYSDATE, 'DD-MM-YYYY') \"NOW\" FROM DUAL) = TO_CHAR(TGL_SPJ, 'DD-MM-YYYY') AND COM=$defaultParam[0] AND PLANT=$defaultParam[1] GROUP BY TIPE_TRUK) GROUP BY TIPE_TRUK";
 		$dbOra->query($sql);
 		$aarSql = $dbOra->build_results($sql);
 		echo json_encode($aarSql);
