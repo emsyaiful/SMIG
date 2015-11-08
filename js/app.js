@@ -8,41 +8,345 @@ app.controller('dashboard', function($scope,$location,$http) {
 	$scope.tKeluar={};
 	$scope.pabrikSemen=[];
 	$scope.pabrikSilo=[];
-	initPabrikSemen();
-	initPabrikSilo();
 	initData();
 	function initPabrik()
 	{
-		$http.get("/dev/sd/stmj/scm/fetchdata.php?sel=cntpbrk").success(function(response){
-			var pbk1bag={}
-			var pbk2bag={}
-			var pbk3bag={}
-			var pbk4bag={}
-			pbk1bag.no=1;
-			pbk2bag.no=2;
-			pbk3bag.no=3;
-			pbk4bag.no=4; 
+		var pbk1bag={}
+		var pbk2bag={}
+		var pbk3bag={}
+		var pbk4bag={}
+		
+		var pbk1bulk={}
+		var pbk2bulk={}
+		var pbk3bulk={}
+		var pbk4bulk={}
+		
+		pbk1bag.no=0;
+		pbk2bag.no=1;
+		pbk3bag.no=2;
+		pbk4bag.no=3;
+		
+		pbk1bulk.no=0;
+		pbk2bulk.no=1;
+		pbk3bulk.no=2;
+		pbk4bulk.no=3;
+
+		pbk1bag.average=0;
+		pbk2bag.average=0;
+		pbk3bag.average=0;
+		pbk4bag.average=0;
+		
+		pbk1bag.pack=[];
+		pbk2bag.pack=[];
+		pbk3bag.pack=[];
+		pbk4bag.pack=[];
+		
+		pbk1bulk.average=0;
+		pbk2bulk.average=0;
+		pbk3bulk.average=0;
+		pbk4bulk.average=0;
+		
+		pbk1bulk.pack=[];
+		pbk2bulk.pack=[];
+		pbk3bulk.pack=[];
+		pbk4bulk.pack=[];
+		
+		pbk1bag.jmlAverage=0;
+		pbk2bag.jmlAverage=0;
+		pbk3bag.jmlAverage=0;
+		pbk4bag.jmlAverage=0;
+		
+		pbk1bulk.jmlAverage=0;
+		pbk2bulk.jmlAverage=0;
+		pbk3bulk.jmlAverage=0;
+		pbk4bulk.jmlAverage=0;
+
+		$scope.pabrikSemen.push(pbk1bag);
+		$scope.pabrikSemen.push(pbk2bag);
+		$scope.pabrikSemen.push(pbk3bag);
+		$scope.pabrikSemen.push(pbk4bag);
+		$scope.pabrikSilo.push(pbk1bulk);
+		$scope.pabrikSilo.push(pbk2bulk)
+		$scope.pabrikSilo.push(pbk3bulk)
+		$scope.pabrikSilo.push(pbk4bulk)
+		
+		angular.element(document).ready(function () {
+			for(i=0;i<4;i++)
+			{
+				var g = new JustGage({
+			    		id: "gaugeSemen_"+i,
+			    		value: 0,
+			    		min: 0,
+			    		max: 500,
+			    		title: "Average Semen " + i,
+			    		label: "Minute"
+			  	});
+				var gs = new JustGage({
+			    		id: "gaugeSilo_"+i,
+			    		value: 0,
+			    		min: 0,
+			    		max: 500,
+			    		title: "Average Silo " + i,
+			    		label: "Minute"
+			  	});
+
+				$scope.pabrikSemen[i].gauge=g;
+
+				$scope.pabrikSilo[i].gauge=gs;
+			}
+		})
+		$http.get("/dev/sd/stmj/scm/fetchdata.php?sel=avgpbrk").success(function(response){
+			
+			 
 			for(i=0;i<response.length;i++)
 			{
-				if(response[i].TIPE_TRUK>=300 && response[i].TIPE_TRUK<308)
+				if(response[i].PABRIK=="T1")
 				{
-					bag.cnt+=parseInt(response[i].COUNTER);
+					if(response[i].MATNR=="121-301")
+					{
+						pbk1bag.average+=parseFloat(response[i].AVERAGE);
+						pbk1bag.jmlAverage++;
+					}
+					if(response[i].MATNR=="121-302")
+					{
+						pbk1bulk.average+=parseFloat(response[i].AVERAGE);
+						pbk1bulk.jmlAverage++;
+					}
 				}
-				else if(response[i].TIPE_TRUK==308)
+				else if(response[i].PABRIK=="T2")
 				{
-					bulk.cnt+=parseInt(response[i].COUNTER);
+					if(response[i].MATNR=="121-301")
+					{
+						pbk2bag.average+=parseFloat(response[i].AVERAGE);
+						pbk2bag.jmlAverage++;
+					}
+					if(response[i].MATNR=="121-302")
+					{
+						pbk2bulk.average+=parseFloat(response[i].AVERAGE);
+						pbk2bulk.jmlAverage++;
+					}
+				}
+				else if(response[i].PABRIK=="T3")
+				{
+					if(response[i].MATNR=="121-301")
+					{
+						pbk3bag.average+=parseFloat(response[i].AVERAGE);
+						pbk3bag.jmlAverage++;
+					}
+					if(response[i].MATNR=="121-302")
+					{
+						pbk3bulk.average+=parseFloat(response[i].AVERAGE);
+						pbk3bulk.jmlAverage++;
+					}
+				}
+				else if(response[i].PABRIK=="T4")
+				{
+					if(response[i].MATNR=="121-301")
+					{
+						pbk4bag.average+=parseFloat(response[i].AVERAGE);
+						pbk4bag.jmlAverage++;
+					}
+					if(response[i].MATNR=="121-302")
+					{
+						pbk4bulk.average+=parseFloat(response[i].AVERAGE);
+						pbk4bulk.jmlAverage++;
+					}
 				}
 
 			}
-			var countCycleBulk= document.getElementById("countCycleBulk");
-			countCycleBulk.innerHTML=bulk.cnt;
+			$scope.pabrikSemen[0].average=pbk1bag.average;
+			$scope.pabrikSemen[1].average=pbk2bag.average;
+			$scope.pabrikSemen[2].average=pbk3bag.average;
+			$scope.pabrikSemen[3].average=pbk4bag.average;
+			$scope.pabrikSemen[0].jmlAverage=pbk1bag.jmlAverage;
+			$scope.pabrikSemen[1].jmlAverage=pbk2bag.jmlAverage;
+			$scope.pabrikSemen[2].jmlAverage=pbk3bag.jmlAverage;
+			$scope.pabrikSemen[3].jmlAverage=pbk4bag.jmlAverage;
+
+			$scope.pabrikSemen[0].gauge.refresh(pbk1bag.average/pbk1bag.jmlAverage)
+			$scope.pabrikSemen[1].gauge.refresh(pbk2bag.average/pbk2bag.jmlAverage)
+			$scope.pabrikSemen[2].gauge.refresh(pbk3bag.average/pbk3bag.jmlAverage)
+			$scope.pabrikSemen[3].gauge.refresh(pbk4bag.average/pbk4bag.jmlAverage)
 			
-			var countCycleBag= document.getElementById("countCycleBag");
-			countCycleBag.innerHTML=bag.cnt;
+			$scope.pabrikSilo[0].average=pbk1bulk.average;
+			$scope.pabrikSilo[1].average=pbk2bulk.average;
+			$scope.pabrikSilo[2].average=pbk3bulk.average;
+			$scope.pabrikSilo[3].average=pbk4bulk.average;
+			$scope.pabrikSilo[0].jmlAverage=pbk1bulk.jmlAverage;
+			$scope.pabrikSilo[1].jmlAverage=pbk2bulk.jmlAverage;
+			$scope.pabrikSilo[2].jmlAverage=pbk3bulk.jmlAverage;
+			$scope.pabrikSilo[3].jmlAverage=pbk4bulk.jmlAverage;
+
+			$scope.pabrikSilo[0].gauge.refresh(pbk1bulk.average/pbk1bulk.jmlAverage)
+			$scope.pabrikSilo[1].gauge.refresh(pbk2bulk.average/pbk2bulk.jmlAverage)
+			$scope.pabrikSilo[2].gauge.refresh(pbk3bulk.average/pbk3bulk.jmlAverage)
+			$scope.pabrikSilo[3].gauge.refresh(pbk4bulk.average/pbk4bulk.jmlAverage)
+
+			
 			
 			
 			
 		});
+		$http.get("/dev/sd/stmj/scm/fetchdata.php?sel=cntpbrk").success(function(response){
+			
+			var pack1bag=[];
+			var pack2bag=[];
+			var pack3bag=[];
+			var pack4bag=[];
+			
+			var pack1bulk=[];
+			var pack2bulk=[];
+			var pack3bulk=[];
+			var pack4bulk=[];
+			
+			var pbk1bagno=0;
+			var pbk2bagno=0;
+			var pbk3bagno=0;
+			var pbk4bagno=0;
+			var pbk1bulkno=0;
+			var pbk2bulkno=0;
+			var pbk3bulkno=0;
+			var pbk4bulkno=0;
+			for(i=0;i<response.length;i++)
+			{
+			
+				if(response[i].PABRIK=="T1")
+				{
+					if(response[i].MATNR=="121-301")
+					{
+						var pack={}
+						pack.no=pbk1bagno
+						pack.type="bag";
+						pack.kode=parseInt(response[i].LSTEL);
+						pack.jumlah=parseInt(response[i].COUNTER);
+						pack1bag.push(pack);
+						pbk1bagno++;
+						
+					}
+					if(response[i].MATNR=="121-302")
+					{
+						var pack={}
+						pack.no=pbk1bulkno;
+						pack.type="bulk";
+						pack.kode=parseInt(response[i].LSTEL);
+						pack.jumlah=parseInt(response[i].COUNTER);
+						pack1bulk.push(pack);
+						pbk1bulkno++;
+					}
+				}
+				if(response[i].PABRIK=="T2")
+				{
+					if(response[i].MATNR=="121-301")
+					{
+						var pack={}
+						pack.no=pbk2bagno
+						pack.type="bag";
+						pack.kode=parseInt(response[i].LSTEL);
+						pack.jumlah=parseInt(response[i].COUNTER);
+						pack2bag.push(pack);
+						pbk2bagno++;
+						
+					}
+					if(response[i].MATNR=="121-302")
+					{
+						var pack={}
+						pack.no=pbk2bulkno;
+						pack.type="bulk";
+						pack.kode=parseInt(response[i].LSTEL);
+						pack.jumlah=parseInt(response[i].COUNTER);
+						pack2bulk.push(pack);
+						pbk2bulkno++;
+					}
+				}
+				if(response[i].PABRIK=="T3")
+				{
+					if(response[i].MATNR=="121-301")
+					{
+						var pack={}
+						pack.no=pbk3bagno
+						pack.type="bag";
+						pack.kode=parseInt(response[i].LSTEL);
+						pack.jumlah=parseInt(response[i].COUNTER);
+						pack3bag.push(pack);
+						pbk3bagno++;
+						
+					}
+					if(response[i].MATNR=="121-302")
+					{
+						var pack={}
+						pack.no=pbk3bulkno;
+						pack.type="bulk";
+						pack.kode=parseInt(response[i].LSTEL);
+						pack.jumlah=parseInt(response[i].COUNTER);
+						pack3bulk.push(pack);
+						pbk3bulkno++;
+					}
+				}
+				if(response[i].PABRIK=="T4")
+				{
+					if(response[i].MATNR=="121-301")
+					{
+						var pack={}
+						pack.no=pbk4bagno
+						pack.type="bag";
+						pack.kode=parseInt(response[i].LSTEL);
+						pack.jumlah=parseInt(response[i].COUNTER);
+						pack4bag.push(pack);
+						pbk4bagno++;
+						
+					}
+					if(response[i].MATNR=="121-302")
+					{
+						var pack={}
+						pack.no=pbk4bulkno;
+						pack.type="bulk";
+						pack.kode=parseInt(response[i].LSTEL);
+						pack.jumlah=parseInt(response[i].COUNTER);
+						pack4bulk.push(pack);
+						pbk4bulkno++;
+					}
+				}
+			}
+			$scope.pabrikSemen[0].pack=pack1bag;
+			$scope.pabrikSilo[0].pack=pack1bulk;
+			$scope.pabrikSemen[1].pack=pack2bag;
+			$scope.pabrikSilo[1].pack=pack2bulk;
+			$scope.pabrikSemen[2].pack=pack3bag;
+			$scope.pabrikSilo[2].pack=pack3bulk;
+			$scope.pabrikSemen[3].pack=pack4bag;
+			$scope.pabrikSilo[3].pack=pack4bulk;
+			angular.element(document).ready(function () {
+				for(i=0;i<$scope.pabrikSemen.length;i++)
+				for(j=0;j<$scope.pabrikSemen[i].pack.length;j++)
+				{
+					var id= document.getElementById("pack_"+i+"_"+j);
+					var od = new Odometer({
+						el:id,
+						value:0,
+						theme:'car'
+					})
+					$scope.pabrikSemen[i].pack[j].odomenter=od;
+					$scope.pabrikSemen[i].pack[j].odomenter.update($scope.pabrikSemen[i].pack[j].jumlah);
+				}
+				for(i=0;i<$scope.pabrikSilo.length;i++)
+				for(j=0;j<$scope.pabrikSilo[i].pack.length;j++)
+				{
+					var id= document.getElementById("silo_"+i+"_"+j);
+					var od = new Odometer({
+						el:id,
+						value:0,
+						theme:'car'
+					})
+					$scope.pabrikSilo[i].pack[j].odomenter=od;
+					$scope.pabrikSilo[i].pack[j].odomenter.update($scope.pabrikSilo[i].pack[j].jumlah);
+				}
+			})
+			
+			console.log($scope.pabrikSemen);
+			
+			
+		});
+		
 		for(i=0;i<4;i++){
 			var pabrik={};
 			pabrik.no=i;
@@ -55,7 +359,7 @@ app.controller('dashboard', function($scope,$location,$http) {
 				pabrik.pack.push(pack)
 				
 			}
-			$scope.pabrikSemen.push(pabrik);
+			//$scope.pabrikSemen.push(pabrik);
 
 		}
 	}
@@ -79,6 +383,7 @@ app.controller('dashboard', function($scope,$location,$http) {
 
 	function initData(){
 		initKargo();
+		initPabrik();
 		initTimbangMasuk();
 		initTimbangKeluar();		
 	}
@@ -507,41 +812,7 @@ app.controller('dashboard', function($scope,$location,$http) {
 
 		}
 	}
-	
-	angular.element(document).ready(function () {
-	// var shown = false;
- //        $('#gaugeKargoBag').on("click",function(){
-	// 	shown ? $(this).hideBalloon() : $(this).showBalloon();
- //    		shown = !shown;
-	// }).showBalloon({
- //  		minLifetime: 0, showDuration: 0, hideDuration: 0,contents: '<a href="#">Any HTML!</a><br />'
- //    		+'<input type="text" size="40" />'
- //    		+'<input type="submit" value="Search" />'
-	// });
-
-	for(i=0;i<$scope.pabrikSemen.length;i++){
-        	var g = new JustGage({
-			    id: "gaugeSemen_"+i,
-			    value: $scope.pabrikSemen[i].average,
-			    min: 0,
-			    max: 100,
-			    title: "Average Semen " + i,
-			    label: "Minute"
-			  });
-        }
-        for(i=0;i<$scope.pabrikSilo.length;i++){
-        	var g = new JustGage({
-			    id: "gaugeSilo_"+i,
-			    value: $scope.pabrikSilo[i].average,
-			    min: 0,
-			    max: 100,
-			    title: "Average Silo " + i,
-			    label: "Minute"
-			  });
-        }
-        
-    });
-	
+		
 	$scope.start = function(){
 		for(i=0;i<$scope.pabrikSemen.length;i++){
 			for(j=0;j<$scope.pabrikSemen[i].pack.length;j++)
