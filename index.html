@@ -18,202 +18,267 @@
 	
 </head>
 <body ng-app="inplant" class="grey lighten-2">
-	<div ng-controller="dashboard" class="container" style="margin-top: 2em;">
+	<div ng-controller="dashboard">
+		<!-- Navbar -->
 		<div class="row">
-
-			<div class="col s6 offset-s1">
-				<div class="row grey lighten-4 hoverable" style="padding: 1em;">
-					<div class="col s12">
-						
-						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.4em;">
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<img id="mobil" src="img/mobil.png" style="height:50px; width:auto;">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col s12">
-										<div class="odometer" id="countcargobulk"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<div id="gaugeKargoBulk" ></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.5em;">
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<img src="img/mobil.png" style="height:50px; width:auto;">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col s12">
-										<div class="odometer" id="countcargobag"></div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<div id="gaugeKargoBag" ></div>
-									</div>
-								</div>
-							</div>				
-						</div>
-
+			<div class="col s12 teal lighten-1" style="padding: 2em;">
+				<div class="row bottom-margin-0">
+					<!-- Navbar Gauge -->
+					<div class="col s2">
+						<img src="img/truck1.png" style="height:80px; width:auto;">
 					</div>
-				</div>
-			</div>
-
-			<div class="col s4 offset-s1">
-				<div class="row grey lighten-4 hoverable" style="padding: 1em;">
-					<div class="col s12">
-						
-						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.4em;">
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<img src="img/flatbed.svg" style="height:50px; width:auto;">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col s12">
-										<div id="countTimbangBulk" class="odometer"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<div id="gaugeTimbangBulk"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.5em;">
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<img src="img/flatbed.svg" style="height:50px; width:auto;">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col s12">
-										<div id="countTimbangBag" class="odometer"></div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<div id="gaugeTimbangBag"></div>
-									</div>
-								</div>
-							</div>				
-						</div>
-
+					<div class="col s2">
+						<img src="img/truck1.png" style="height:80px; width:auto;">
 					</div>
+					<div class="col s2">
+						<img src="img/truck1.png" style="height:80px; width:auto;">
+					</div>
+					<!-- End of Navbar Gauge -->
 				</div>
 			</div>
 		</div>
+		<!-- End of Navbar -->
 
-		<div class="row">
-			<div ng-repeat="onePabrik in pabrikSemen">
-				<div class="col s3 transparent hoverable" style="padding: 0em .2em;">
-					<div class="white grey-text text-lighten-5">
-						<div style="width:100%;" class="center-align">
-							<div id="gaugeSemen_{{onePabrik.no}}" class="grey-text text-lighten-5"></div>
-						</div>
-						<div style="width:100%;" class="center-align">
-							<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2" id="pack_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block; ">123</div><br><br>
-							<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" id="pack_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>		
-						</div>
-					</div>			
+		<div style="margin-top: 2em;">
+		<!-- Kargo & Timbang Masuk -->
+			<div class="row">
+				<div class="road-image">
+					<img src="img/road-horizontal-right.png">
 				</div>
-			</div>
-		</div>
+				<div class="col s3 offset-s2">
+					<div class="row grey lighten-2" style="padding: 0em;">
+						<div class="col s12" style="padding: 0.4em;">
+							
+							<div class="row teal lighten-2 grey-text text-lighten-5 hoverable" style="padding: 1em; margin-bottom: 0.4em;">
+								<div class="col s6 top-padding-1-5">
+									<div class="row">
+										<div class="col s12">
+											<img id="mobil" src="img/truck1.png" style="height:60px; width:auto;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col s12">
+											<div style="width:100%;" class="center-align">
+												<div class="odometer" id="countcargobulk"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col s6">
+									<div class="row bottom-margin-0">
+										<div class="col s12">
+											<div id="gaugeKargoBulk" ></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row teal lighten-2 grey-text text-lighten-5 hoverable" style="padding: 1em; margin-bottom: 0em;">
+								<div class="col s6 top-padding-1-5">
+									<div class="row">
+										<div class="col s12">
+											<img src="img/truck1.png" style="height:60px; width:auto;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col s12">
+											<div style="width:100%;" class="center-align">
+												<div class="odometer" id="countcargobag"></div>
+											</div>
+										</div>
+									</div>
+								</div>
 
-		<div class="row">
-			<div ng-repeat="onePabrik in pabrikSilo">
-				<div class="col s3 transparent hoverable" style="padding: .2em .2em;">
-					<div class="white grey-text text-lighten-5">
-						<div style="width:100%;" class="center-align">
-							<div id="gaugeSilo_{{onePabrik.no}}" ></div>
+								<div class="col s6">
+									<div class="row bottom-margin-0">
+										<div class="col s12">
+											<div id="gaugeKargoBag" ></div>
+										</div>
+									</div>
+								</div>				
+							</div>
+
 						</div>
-						<div style="width:100%;" class="center-align">
-							<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2" id="silo_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>
-							<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" id="silo_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>
+					</div>
+				</div>
+
+				<div class="col s4 offset-s1">
+					<div class="row grey lighten-2" style="padding: 0em;">
+						<div class="col s12"  style="padding: 0.4em;">
+							
+							<div class="row teal lighten-2 grey-text text-lighten-5 hoverable" style="padding: 1em; margin-bottom: 0.4em;">
+								<div class="col s6 top-padding-1-5">
+									<div class="row">
+										<div class="col s12">
+											<img src="img/truck1.png" style="height:60px; width:auto;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col s12">
+											<div style="width:100%;" class="center-align">
+												<div class="odometer"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col s6">
+									<div class="row bottom-margin-0">
+										<div class="col s12">
+											<div id="gaugeTimbangBag"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row teal lighten-2 grey-text text-lighten-5 hoverable" style="padding: 1em; margin-bottom: 0em;">
+								<div class="col s6 top-padding-1-5">
+									<div class="row">
+										<div class="col s12">
+											<img src="img/truck1.png" style="height:60px; width:auto;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col s12">
+											<div style="width:100%;" class="center-align">
+												<div class="odometer"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col s6">
+									<div class="row bottom-margin-0">
+										<div class="col s12">
+											<div id="gaugeTimbangBulk"></div>
+										</div>
+									</div>
+								</div>				
+							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
+		<!-- End of Kargo & Timbang Masuk -->
 		</div>
+
 		<div class="row">
-			<div class="col s6 grey lighten-4 hoverable">
-				<div class="row" style="padding: 0.5em; margin-bottom: 0em;">
-					<div class="col s12">
-						
-						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.4em;">
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<img src="img/mobil.png" style="height:50px; width:auto;">
+			<div class="road-image">
+				<img src="img/road-horizontal-middle-top.png">
+			</div>
+			<div class="col s12">
+				<!-- Delapan Kotak Hijau Tengah -->
+				<div class="container">
+					<div class="row">
+						<div ng-repeat="onePabrik in pabrikSemen">
+							<div class="col s3 grey lighten-2 hoverable" style="padding: 0em .2em;">
+								<div class="green lighten-1 grey-text text-lighten-5">
+									<div style="width:100%;" class="center-align">
+										<div id="gaugeSemen_{{onePabrik.no}}" class="grey-text text-lighten-5"></div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col s12">
-										<div class="odometer" id="countCycleBulk"></div>
+									<div style="width:100%;" class="center-align">
+										<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2" id="pack_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block; ">123</div><br><br>
+										<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" id="pack_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>		
 									</div>
-								</div>
-							</div>
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<div id="gaugeCycleBulk" ></div>	
-									</div>
-								</div>
+								</div>			
 							</div>
 						</div>
-						
-						<div class="row teal lighten-2 grey-text text-lighten-5" style="padding: 1em; margin-bottom: 0.5em;">
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<img src="img/flatbed.svg" style="height:50px; width:auto;">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col s12">
-										<div class="odometer" id="countCycleBag"></div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col s6">
-								<div class="row">
-									<div class="col s12">
-										<div id="gaugeCycleBag" ></div>
-									</div>
-								</div>
-							</div>				
-						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
-	<button ng-click="start()">click me!</button>
+
+		<div class="row">
+			<div class="road-image">
+				<img src="img/road-horizontal-middle-bottom.png">
+			</div>
+			<div class="col s12">
+				<div class="container">
+					<div class="row">
+						<div ng-repeat="onePabrik in pabrikSilo">
+							<div class="col s3 grey lighten-2 hoverable" style="padding: .2em .2em;">
+								<div class="green lighten-1 grey-text text-lighten-5">
+									<div style="width:100%;" class="center-align">
+										<div id="gaugeSilo_{{onePabrik.no}}" ></div>
+									</div>
+									<div style="width:100%;" class="center-align">
+										<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2" id="silo_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>
+										<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" id="silo_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End of Delapan Kotak Hijau Tengah -->
+			</div>
+		</div>
+
+		<!-- Timbang Keluar & Pelabuhan Tuban -->
+			<div class="row">
+				<div class="road-image">
+					<img src="img/road-horizontal-bottom.png">
+				</div>
+				<div class="col s3 offset-s2 grey lighten-2" style="padding: 0.4em;">
+					<div class="row" style="padding: 0em; margin-bottom:0em;">
+						<div class="col s12" style="padding: 0em;">
+							
+							<div class="row teal lighten-2 grey-text text-lighten-5 hoverable" style="padding: 1em; margin-bottom: 0.4em;">
+								<div class="col s6 top-padding-1-5">
+									<div class="row">
+										<div class="col s12">
+											<img src="img/truck1.png" style="height:60px; width:auto;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col s12">
+											<div style="width:100%;" class="center-align">
+												<div class="odometer"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col s6">
+									<div class="row bottom-margin-0">
+										<div class="col s12">
+											<div id="gaugeCycleBag" ></div>	
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row teal lighten-2 grey-text text-lighten-5 hoverable" style="padding: 1em; margin-bottom: 0em;">
+								<div class="col s6 top-padding-1-5">
+									<div class="row">
+										<div class="col s12">
+											<img src="img/truck1.png" style="height:60px; width:auto;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col s12">
+											<div style="width:100%;" class="center-align">
+												<div class="odometer"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col s6">
+									<div class="row bottom-margin-0">
+										<div class="col s12">
+											<div id="gaugeCycleBulk" ></div>
+										</div>
+									</div>
+								</div>				
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- End of Timbang Keluar & Pelabuhan Tuban -->
+		<button ng-click="start()">click me!</button>
+		
 	</div>
 
 </body>
