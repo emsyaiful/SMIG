@@ -26,17 +26,17 @@
 				<div class="row">
 					<!-- Cargo -->
 					<div class="col s3 offset-s2">
-						<div class="row bottom-margin-0 center-align" style="padding-top:10%;">
-							<div class="col offset-s1 s10">
-								<div class="row" style="margin-top: 11%;">
-									<div class="col s3" style="padding-top:35%;">
-										<div style="width:100%;" class="center-align">
-											<div class="odometer" id="countcargobulk"></div>
-										</div>
-									</div>
+						<div class="row bottom-margin-0 center-align" style="padding-top:10%; width:125%;">
+							<div class="col offset-s1 s11">
+								<div class="row" style="margin-top: 43%; margin-left: 15%">
 									<div class="col s7">
 										<div style="width:100%;" class="center-align">
-											<div id="gaugeKargoBulk"></div>
+											<div class="bg-color-red value">{{kargo.bag.avg | number:2}} Menit</div>
+										</div>
+									</div>
+									<div class="col s5" style="padding-left: 0px;">
+										<div style="width:100%;" class="center-align">
+											<div class="bg-color-red value">{{kargo.bag.cnt | number:2}} Unit</div>
 										</div>
 									</div>
 								</div>
@@ -44,17 +44,17 @@
 						</div>
 						
 
-						<div class="row bottom-margin-0">
-							<div class="col offset-s1 s10">
-								<div class="row" style="margin-top: -41%;">
-									<div class="col s3" style="padding-top:35%;">
-										<div style="width:100%;" class="center-align">
-											<div class="odometer" id="countcargobag"></div>
-										</div>
-									</div>
+						<div class="row bottom-margin-0 center-align" style="width:125%;">
+							<div class="col offset-s1 s11">
+								<div class="row" style="margin-top: 7%; margin-left: 15%">
 									<div class="col s7">
 										<div style="width:100%;" class="center-align">
-											<div id="gaugeKargoBag"></div>
+											<div class="bg-color-yellow value">{{kargo.bulk.cnt | number:2}} Menit</div>
+										</div>
+									</div>
+									<div class="col s5" style="padding-left: 0px;">
+										<div style="width:100%;" class="center-align">
+											<div class="bg-color-yellow value">{{kargo.bulk.cnt | number:2}} Unit</div>
 										</div>
 									</div>
 								</div>
@@ -64,22 +64,38 @@
 					<!-- End of Cargo -->
 
 					<!-- Timbang -->
-					<div class="col s4 offset-s1">
-						<div class="row bottom-margin-0 center-align" style="padding-top:15%;">
-							<div class="col s4">
-								<div style="width:100%;" class="center-align">
-									<div id="gaugeTimbangBag"></div>
-								</div>
-								<div style="width:100%; margin-top: -30%;" class="center-align">
-									<div class="odometer"></div>
+					<div class="col s3 offset-s1">
+						<div class="row bottom-margin-0 center-align" style="padding-top:10%; width:125%;">
+							<div class="col s11">
+								<div class="row" style="margin-top: 43%; margin-left: 10%">
+									<div class="col s7">
+										<div style="width:100%;" class="center-align">
+											<div class="bg-color-green value">{{tMasuk.bag.avg | number:2}} Menit</div>
+										</div>
+									</div>
+									<div class="col s5" style="padding-left: 0px;">
+										<div style="width:100%;" class="center-align">
+											<div class="bg-color-green value">{{tMasuk.bag.cnt | number:2}} Unit</div>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="col s4">
-								<div style="width:100%;" class="center-align">
-									<div id="gaugeTimbangBulk"></div>
-								</div>
-								<div style="width:100%; margin-top: -30%;" class="center-align">
-									<div class="odometer"></div>
+						</div>
+						
+
+						<div class="row bottom-margin-0 center-align" style="width:125%;">
+							<div class="col s11">
+								<div class="row" style="margin-top: 7%; margin-left: 10%">
+									<div class="col s7">
+										<div style="width:100%;" class="center-align">
+											<div class="bg-color-green value">{{tMasuk.bulk.avg | number:2}} menit</div>
+										</div>
+									</div>
+									<div class="col s5" style="padding-left: 0px;">
+										<div style="width:100%;" class="center-align">
+											<div class="bg-color-green value">{{tMasuk.bulk.cnt | number:2}} Unit</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -95,16 +111,16 @@
 				<div class="col s9 offset-s3">
 					<div class="container" style="width:80%;">
 						<div style="margin-left: 5%;">
-							<div class="row" style="margin-top: -7%;">
+							<div class="row" style="margin-top: 12%;">
 								<div ng-repeat="onePabrik in pabrikSemen">
 									<div class="col s2" style="padding: 0em .2em; margin-left:3%; margin-right:3.5%;">
-										<div class="transparent grey-text text-lighten-5">
+										<div class="transparent grey-text text-darken-4">
 											<div style="width:100%;" class="center-align">
-												<div id="gaugeSemen_{{onePabrik.no}}" class="grey-text text-lighten-5"></div>
+												<div class="bg-color-red value">{{onePabrik.average | number:2}} Menit</div>
 											</div>
-											<div style="width:100%;" class="center-align">
-												<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2" id="pack_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block; ">123</div><br><br>
-												<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" id="pack_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>		
+											<div style="width:100%; padding:0px; margin:10% 0% 0% 0%;" class="row center-align">
+												<div class="col s3 bg-color-red counter" style="margin:0px;" ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2" style="margin-left:5px;display: inline-block; ">{{pack.jumlah}}</div>
+												<div class="col s3 bg-color-yellow counter" style="margin:0px;" ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" style="margin-left:5px;display: inline-block;">{{pack.jumlah}}</div>
 											</div>
 										</div>			
 									</div>
@@ -117,24 +133,34 @@
 			<!-- End of Baris 1 -->
 
 			<!-- Baris 2 -->
-			<div class="row bottom-margin-0" style="margin-top: -7%; height: 200px; overflow: hidden;">
+			<div class="row bottom-margin-0" style="height: 200px; overflow: hidden;">
 				<!-- Truk & Timbang Keluar -->
 				<div class="col s3">
-					<div class="row bottom-margin-0 center-align">
-						<div class="col s6">
-							<div style="width:100%;" class="center-align">
-								<div id="gaugeCycleBag" ></div>
+					<div class="row bottom-margin-0 center-align" style="margin-left:40%; margin-top: 25%;">
+						<div style="position:absolute; width: 195px;">
+							<div class="col s4" style="padding:0px; margin:0px;">
+								<div style="width:100%;" class="center-align">
+									<div class="bg-color-red value">{{tKeluar.bulk.avg | number:2}}</div>
+								</div>
+								<div style="width:100%; margin-top:65%;" class="center-align">
+									<div class="bg-color-red value">{{tKeluar.bulk.cnt | number:2}}</div>
+								</div>
 							</div>
-							<div style="width:100%; margin-top: -20%;" class="center-align">
-								<div class="odometer"></div>
+							<div class="col s4" style="padding:0px; margin:0px;">
+								<div style="width:100%;" class="center-align">
+									<div class="bg-color-yellow value">{{tKeluar.bag.avg | number:2}}</div>
+								</div>
+								<div style="width:100%; margin-top:65%;" class="center-align">
+									<div class="bg-color-yellow value">{{tKeluar.bag.cnt | number:2}}</div>
+								</div>
 							</div>
-						</div>
-						<div class="col s6">
-							<div style="width:100%;" class="center-align">
-								<div id="gaugeCycleBulk" ></div>
-							</div>
-							<div style="width:100%; margin-top: -20%;" class="center-align">
-								<div class="odometer"></div>
+							<div class="col s4" style="padding:0px; margin:0px;">
+								<div style="width:100%;" class="center-align">
+									<div class="bg-color-green value">{{tKeluar.bag.avg | number:2}}</div>
+								</div>
+								<div style="width:100%; margin-top:65%;" class="center-align">
+									<div class="bg-color-green value">{{tKeluar.bag.cnt | number:2}}</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -143,17 +169,17 @@
 
 				<div class="col s9">
 					<div class="container" style="width:80%;">
-						<div style="margin-left: 5%;">
+						<div style="margin-left: 5%; margin-top:5%;">
 							<div class="row bottom-margin-0">
 								<div ng-repeat="onePabrik in pabrikSilo">
 									<div class="col s2" style="padding: .2em .2em; margin-left:3%; margin-right:3.5%;">
-										<div class="transparent grey-text text-lighten-5">
+										<div class="transparent grey-text text-darken-4">
 											<div style="width:100%;" class="center-align">
-												<div id="gaugeSilo_{{onePabrik.no}}" ></div>
+												<div class="bg-color-green value">{{onePabrik.average | number:2}} Menit</div>
 											</div>
-											<div style="width:100%;" class="center-align">
-												<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2" id="silo_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>
-												<div ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" id="silo_{{onePabrik.no}}_{{pack.no}}" class="odometer" style="margin-left:5px;display: inline-block;">123</div><br><br>
+											<div style="width:100%; padding:0px; margin:10% 0% 0% 0%;" class="row center-align">
+												<div class="col s3 bg-color-green counter" style="margin:0px;" ng-repeat="pack in onePabrik.pack" ng-if="pack.no<onePabrik.pack.length/2"  style="margin-left:5px;display: inline-block;">{{pack.jumlah}}</div>
+												<div class="col s3 bg-color-green counter" style="margin:0px;" ng-repeat="pack in onePabrik.pack" ng-if="pack.no>=onePabrik.pack.length/2" style="margin-left:5px;display: inline-block;">{{pack.jumlah}}</div>
 											</div>
 										</div>
 									</div>

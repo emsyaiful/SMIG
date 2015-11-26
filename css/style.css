@@ -21,3 +21,30 @@
 	position: absolute;
 	width: 100%;
 }
+
+.bg-color-green {
+	background: #BCF5A9;
+}
+
+.bg-color-yellow {
+	background: #F4FA58;
+}
+
+.bg-color-red {
+	background: #F78181;
+}
+
+.counter {
+	font-size: 10px !important;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid #2E2E2E;
+	padding: 0px !important;
+}
+
+.value {
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid #2E2E2E;
+	padding: 0px !important;
+}
